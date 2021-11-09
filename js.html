@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+	<head>
+        <title>JS GAME</title>
+        <style>
+            body{
+                margin: 1em 4em;
+            }
+            #shape{
+                background-color: blue;
+                width: 200px;
+                height: 200px;
+                position: relative;
+               
+            }
+            p{font-size: 20px;}
+        </style>
+    </head>
+    <body>
+        <H1>Test your reflexes</H1>
+        <h2>Click on objects of different shapes and colors as fast as you cane</h2>
+        <a href="js.html">Reset game</a>
+        <p id="disMesage"> </p>
+        <p id="disScore"> </p>
+       
+        <div id="shape"></div>
+         
+
+
+
+         <script type="text/javascript">
+
+         var start = new Date().getTime();
+    
+        function resetTime(){
+
+            start = new Date().getTime();
+            document.getElementById("shape").style.display="block";          
+
+        }
+        function randomMove(){
+
+            var top = Math.random() * 300;
+            var left = Math.random() * 300;
+
+            document.getElementById("shape").style.top= top + "px";  
+            document.getElementById("shape").style.left= left + "px";          
+
+            }
+            function randomSize(){
+
+            var widthSize = (Math.random() * 400) +20;
+            
+
+            document.getElementById("shape").style.width= widthSize + "px";  
+            document.getElementById("shape").style.height= widthSize + "px";          
+
+            }
+
+            function randomShape(){
+                var randomNumber = Math.random();
+                document.getElementById("shape").style.border="1px solid";
+                if(randomNumber > 0.5){
+                    document.getElementById("shape").style.borderRadius="50%";
+                }else{
+                    document.getElementById("shape").style.borderRadius="0%";
+                }
+            }
+
+             function getRandomColor() {
+                    var letters = '0123456789ABCDEF';
+                    var color = '#';
+                    for (var i = 0; i < 6; i++) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                    }
+
+                    function setRandomColor() {
+                    $("#colorpad").css("background-color", getRandomColor());
+                }
+
+              
+
+
+
+             //   Score best function 
+          
+
+                
+               
+
+
+           var min=1.1000 ;     
+
+         document.getElementById("shape").onclick=function(){
+            var delayInMilliseconds = (Math.random() * 3000);
+            
+              
+            
+            document.getElementById("shape").style.display="none"; 
+            
+            var end = new Date().getTime();            
+            var time = (end - start)/1000;
+            htime=time;
+
+            if(htime<min){
+                min=htime;
+            }else htime =min;
+
+
+            document.getElementById("disMesage").innerHTML="your time is:  " + time +  " s";
+            document.getElementById("disScore").innerHTML="Your best score is:  " + min +  " s";
+            randomShape();
+            
+            setTimeout(function() {
+                resetTime();  
+                    }, delayInMilliseconds);
+                    
+            randomMove();
+            
+            document.getElementById("shape").style.backgroundColor= getRandomColor();
+            randomSize();
+            
+            
+            
+            
+            }
+           // 
+     
+               
+      	</script>
+    </body>
+</html>
